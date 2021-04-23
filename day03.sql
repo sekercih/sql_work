@@ -1,0 +1,6 @@
+
+CREATE TABLE sehirler(
+alan_kodu NUMBER(3)DEFAULT 34,
+isim VARCHAR2(20) DEFAULT 'ÝSTANBUL',
+nufus NUMBER(8) CHECK(nufus>0)
+);
