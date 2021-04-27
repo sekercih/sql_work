@@ -33,8 +33,8 @@
     INSERT INTO sirketler VALUES(102, 'Hyundai', 10000);
     INSERT INTO sirketler VALUES(103, 'Toyota', 21000);
 
-    SELECT *FROM sirketler;
-    SELECT * FROM personel;
+    SELECT  * FROM sirketler;
+    SELECT *  FROM personel;
 /* -----------------------------------------------------------------------------
   ORNEK1: Personel sayýsý 15.000’den cok olan sirketlerin isimlerini ve bu 
   sirkette calisan personelin isimlerini ve maaþlarýný listeleyin
@@ -68,20 +68,31 @@
   ORNEK4: Her þirketin ismini, personel sayýsýný ve o þirkete ait personelin
   toplam maaþýný listeleyen bir Sorgu yazýnýz.
  -----------------------------------------------------------------------------*/
- SELECT sirket_adi,Sum(distinct personel_sayisi),Sum( distinct personel.maas) 
+ SELECT sirket_adi,Sum(distinct personel_sayisi),Sum( distinct maas) 
 from sirketler
-INNER JOIN personel on sirketler.sirket_adi=personel.sirket
-group by sirket_adi;
+INNER JOIN personel on personel.sirket=sirketler.sirket_adi
+group by sirket_adi, Sum(distinct personel_sayisi), Sum( distinct maas);
  
   SELECT maas from personel;
  
   SELECT sirket_adi , personel_sayisi, (SELECT  SUM(maas) FROM personel WHERE personel.sirket = sirketler.sirket_adi ) AS maas_toplami
  FROM sirketler;
  
+ SELECT sirket_adi, personel_sayisi, (SELECT Sum(maas)
+FROM personel 
+Where sirket=sirket_adi) AS maas_toplami FROM sirketler;
+
+SELECT
+    *
+FROM personel;
+SELECT
+    *
+FROM sirketler;
+
+
  
  
  
- 
- 
+
 
   
